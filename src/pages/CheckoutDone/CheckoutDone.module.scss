@@ -1,0 +1,45 @@
+.inner {
+  max-width: var(--default-layout-width);
+  width: 100%;
+  padding: 110px 174px 90px 174px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-infors {
+  display: flex;
+  flex-direction: column;
+}
+
+.thanks-title {
+  font-size: 3.1rem;
+}
+
+.order-infor {
+  display: flex;
+  margin-top: 20px;
+  //   padding: 20px;
+}
+
+.infor {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  color: var(--darkGray);
+  span {
+    margin-bottom: 18px;
+  }
+}
+
+.infor:first-child {
+  margin-left: 0;
+}
+
+.order-details {
+  margin-top: 60px;
+  width: 100%;
+}
+
+.order-details-title {
+  margin-bottom: 40px;
+}

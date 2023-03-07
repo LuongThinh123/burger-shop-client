@@ -1,0 +1,45 @@
+.register_container {
+  width: 600px;
+  height: 680px;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.register_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .signIn_btn {
+    margin-top: 12px;
+    width: 160px;
+    border-radius: 50px;
+    span {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.login_navigate {
+  margin-top: 25px;
+  .question {
+    font-size: 1.8rem;
+  }
+}
+
+.login_link {
+  .title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--primary);
+  }
+}

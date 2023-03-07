@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+  align-items: center;
+}
+
+.container,
+.items-container,
+.displayFrame {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.carouselProduct {
+  flex-shrink: 0;
+}
+
+.items-container {
+  align-items: center;
+  overflow: hidden;
+}
+
+.displayFrame {
+  max-height: 900px;
+  margin: auto;
+  text-align: center;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  z-index: 1;
+  caret-color: transparent;
+  transition: all 700ms ease-in-out;
+}
+
+.displayFrame::-webkit-scrollbar {
+  display: none;
+}
+
+.left-arrow,
+.right-arrow {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--darkCyan);
+  }
+}
+
+.left-arrow-icon,
+.right-arrow-icon {
+  font-size: 2.5rem;
+}
+
+.left-arrow {
+  position: absolute;
+  left: -3%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.right-arrow {
+  position: absolute;
+  right: -3%;
+  cursor: pointer;
+  z-index: 2;
+}
+// .carouselItem {
+//   touch-action: none;
+//   height: 100%;
+//   width: 100%;
+//   display: inline-block;
+//   vertical-align: top;
+// }
+
+// .carouselItem img {
+//   height: 100%;
+//   max-width: 100%;
+//   background-color: none;
+// }

@@ -1,0 +1,10 @@
+.inner {
+  display: flex;
+  padding: 0 var(--default-content-layout-padding);
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: var(--default-layout-width);
+  width: 100%;
+  margin-top: 68px;
+  margin-bottom: 120px;
+}

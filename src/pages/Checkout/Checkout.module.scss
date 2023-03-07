@@ -1,0 +1,44 @@
+.inner {
+  padding: 0 var(--default-content-layout-padding);
+  max-width: var(--default-layout-width);
+  width: 100%;
+  margin: 68px 0;
+  margin-bottom: 140px;
+}
+
+.checkout-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Billing-details {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+
+  .Billing-details-title {
+    margin-bottom: 20px;
+  }
+
+  .name-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .input-form-name {
+    width: 49%;
+  }
+
+  .input-form {
+    width: 100%;
+  }
+}
+
+.bill-input {
+  //   height: 46px;
+  //   width: 100%;
+  border: 2px solid var(--lightGray);
+  border-radius: 5px;
+}
