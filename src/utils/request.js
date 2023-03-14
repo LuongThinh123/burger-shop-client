@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode';
 // Set up default config for http requests heret
 
 const request = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'https://burger-shop-server.vercel.app',
   headers: {
     'content-type': 'application/json',
   },
