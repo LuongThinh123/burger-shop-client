@@ -26,27 +26,20 @@ export const login = async (user, dispatch, navigate) => {
   }
 };
 
-export const register = async (user, dispatch, navigate) => {
+export const register = async (user) => {
   try {
     const res = await request.post(`/auth/register`, user);
-    dispatch(registerSuccess(''));
-    if (res.error === false) {
-      setUser(res);
-      navigate('/login');
-    }
     return res;
   } catch (err) {
-    dispatch(registerFailed(''));
+    return { error: err.response.data.messages.join(',') };
   }
 };
 
 export const logout = async (accessToken, dispatch, navigate) => {
   try {
-    const result = await request.post(`/auth/logout`, {}, { headers: { token: `Bearer ${accessToken}` } });
     localStorage.clear();
     dispatch(logoutSuccess());
     navigate('/login');
-    return result;
   } catch (err) {
     dispatch(logoutFailed(err));
     console.log(err);
