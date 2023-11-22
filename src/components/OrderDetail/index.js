@@ -61,20 +61,24 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
       <div className={cx('order-product-list')}>
         {itemList
           ? itemList.map((item) => {
-              totalPrice += item.sale * item.quantity;
+              totalPrice += item.product.priceSale * item.amount;
               return (
-                <div key={item._id} className={cx('order-product')}>
+                <div key={item.id} className={cx('order-product')}>
                   <div className={cx('product-item')}>
                     <div className={cx('product-imgBox')}>
-                      <img className={cx('product_img')} src={require(`../../assets/images/${item.image}`)} alt="" />
+                      <img
+                        className={cx('product_img')}
+                        src={`http://localhost:8080/api/file/download?fileName=${item.product.imageName}`}
+                        alt=""
+                      />
                     </div>
                     <div className={cx('product-info')}>
-                      <span className={cx('product-name')}>{item.title}</span>
-                      <span className={cx('product-quantity')}>X{item.quantity}</span>
-                      <span className={cx('product-price')}>${item.sale}</span>
+                      <span className={cx('product-name')}>{item.product.name}</span>
+                      <span className={cx('product-quantity')}>X{item.amount}</span>
+                      <span className={cx('product-price')}>${item.product.priceSale}</span>
                     </div>
                   </div>
-                  <span className={cx('product-total')}>${priceFormat(item.sale * item.quantity)}</span>
+                  <span className={cx('product-total')}>${priceFormat(item.product.priceSale * item.amount)}</span>
                 </div>
               );
             })
@@ -90,16 +94,6 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
             Total:
             <span> ${priceFormat(totalPrice)}</span>
           </div>
-          {status && status.code === 1 && (
-            <div ref={statusChangeBtnRef} className={cx('order-status-change')}>
-              <Button className={cx('status-change-btn')} onClick={() => handleChangeStatus(2)}>
-                COMPLETED
-              </Button>
-              <Button className={cx('status-change-btn')} onClick={() => handleChangeStatus(3)}>
-                CANCELED
-              </Button>
-            </div>
-          )}
         </div>
       </div>
     </div>

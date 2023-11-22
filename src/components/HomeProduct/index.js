@@ -33,7 +33,7 @@ function HomeProduct() {
       <h2 className={cx('products-title')}>Shop our favourites</h2>
       <div className={cx('home-products')}>
         {productList.map((product) => (
-          <ProductCard key={product._id} data={product} className={cx('product-item')} toastDispatch={toastDispatch} />
+          <ProductCard key={product.id} data={product} className={cx('product-item')} toastDispatch={toastDispatch} />
         ))}
       </div>
       <Button primary className={cx('view-all-btn')} to={'/products'}>

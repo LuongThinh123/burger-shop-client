@@ -38,16 +38,16 @@ function CategoryList({ categoryFilter, filterDispatch }) {
           {categories.length !== 0 ? (
             categories.map((category, index) => {
               return (
-                <li key={category._id} className={cx('category')}>
+                <li key={category.id} className={cx('category')}>
                   <input
                     className={cx('category-checkbox')}
                     type="checkbox"
                     id={`check-${index}`}
-                    onChange={(input) => handleCategoryChecked(input, category._id)}
-                    checked={categoryFilter.includes(category._id)}
+                    onChange={(input) => handleCategoryChecked(input, category.id)}
+                    checked={categoryFilter.includes(category.id)}
                   />
                   <label htmlFor={`check-${index}`} className={cx('category-name')}>
-                    {category.title}
+                    {category.name}
                   </label>
                 </li>
               );

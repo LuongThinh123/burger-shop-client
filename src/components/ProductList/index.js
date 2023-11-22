@@ -42,14 +42,14 @@ function ProductList({ filterState, filterDispatch }) {
       <SortBar
         sortFilter={filterState.order}
         pageFilter={filterState.page}
-        limit={productListInfor.limit ? productListInfor.limit : 6}
-        totalCount={productListInfor.total ? productListInfor.total : ''}
+        limit={productListInfor.pageSize ? productListInfor.pageSize : 6}
+        totalCount={productListInfor.totalRecord ? productListInfor.totalRecord : ''}
         filterDispatch={filterDispatch}
       />
       <div className={cx('product-list')}>
-        {productListInfor.products ? (
-          productListInfor.products.map((data) => {
-            return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;
+        {productListInfor.records ? (
+          productListInfor.records.map((data) => {
+            return <ProductCard key={data.id} data={data} toastDispatch={toastDispatch} />;
           })
         ) : (
           <ProductSkeleton cards={6} />
@@ -58,8 +58,8 @@ function ProductList({ filterState, filterDispatch }) {
       <Pagination
         className="pagination-bar"
         currentPage={filterState.page}
-        totalCount={productListInfor.total ? productListInfor.total : ''}
-        pageSize={productListInfor.limit ? productListInfor.limit : 6}
+        totalCount={productListInfor.totalRecord ? productListInfor.totalRecord : ''}
+        pageSize={productListInfor.pageSize ? productListInfor.pageSize : 6}
         onPageChange={useCallback((currentPage) => handleOnPageChange(currentPage), [handleOnPageChange])}
       />
     </div>

@@ -6,7 +6,8 @@ import jwt_decode from 'jwt-decode';
 // Set up default config for http requests heret
 
 const request = axios.create({
-  baseURL: 'https://burger-shop-server.vercel.app',
+  // baseURL: 'https://burger-shop-server.vercel.app',
+  baseURL: 'http://localhost:8080/api',
   headers: {
     'content-type': 'application/json',
   },
@@ -20,17 +21,17 @@ request.interceptors.request.use(async (config) => {
   if (!accessToken) return config;
 
   // Handle token here ...
-  const date = new Date();
-  const decodedToken = jwt_decode(accessToken);
+  // const date = new Date();
+  // const decodedToken = jwt_decode(accessToken);
 
-  if (decodedToken.exp < date.getTime() / 1000) {
-    const res = await request.post('/auth/refresh', { withCredentials: true });
-    if (!res) return config;
+  // if (decodedToken.exp < date.getTime() / 1000) {
+  //   const res = await request.post('/auth/refresh', { withCredentials: true });
+  //   if (!res) return config;
 
-    setAccessToken(res.accessToken || '');
+  //   setAccessToken(res.accessToken || '');
 
-    config.headers['token'] = `Bearer ${res.accessToken}`;
-  }
+  // }
+  config.headers['token'] = `Bearer ${accessToken}`;
 
   return config;
 });

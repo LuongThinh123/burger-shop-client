@@ -28,7 +28,7 @@ function Checkout() {
   const lastNameRef = useRef();
   const companyRef = useRef();
   const regionRef = useRef();
-  const streetAddressRef = useRef();
+  const name = useRef();
   const streetAddress2Ref = useRef();
   const cityRef = useRef();
   const countryRef = useRef();
@@ -40,12 +40,11 @@ function Checkout() {
     .object({
       firstName: yup.string().required('This field is required'),
       lastName: yup.string().required('This field is required'),
-      region: yup.string().required('This field is required'),
+
       streetAddress: yup.string().required('This field is required'),
-      town: yup.string().required('This field is required'),
-      postCode: yup.string().required('This field is required'),
+
       phone: yup.string().required('This field is required'),
-      email: yup.string().email('Please enter a valid email').required('This field is required'),
+
       payment: yup.string().required('This field is required'),
     })
     .required();
@@ -75,17 +74,9 @@ function Checkout() {
     const orderDate = getCurrentDateTime();
 
     const shippingInfor = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      company: companyRef.current.value,
-      region: data.region,
-      streetAddressRef: data.streetAddress,
-      streetAddress2Ref: streetAddress2Ref.current.value,
-      city: data.town,
-      country: countryRef.current.value,
-      postCode: data.postCode,
+      fullName: data.lastName + ' ' + data.firstName,
+      name: data.streetAddress,
       phone: data.phone,
-      email: data.email,
       payment: data.payment,
       orderDate,
       orderNumber,
@@ -98,13 +89,13 @@ function Checkout() {
     setOrderDetails(products);
     setCartProducts([]);
 
-    const orderInfor = {
-      products,
-      totalPrice,
-      shippingInfor,
-    };
+    // const orderInfor = {
+    //   products,
+    //   totalPrice,
+    //   shippingInfor,
+    // };
 
-    orderApi.addOrder(getAccessToken(), orderInfor);
+    orderApi.addOrder(getAccessToken(), shippingInfor);
 
     navigate('/checkout-done');
   };
@@ -144,13 +135,7 @@ function Checkout() {
                   placeholder="Last Name"
                 />
               </div>
-              <Input
-                ref={companyRef}
-                type={'text'}
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                label="Company name (optional)"
-              />
+
               <Input
                 type={'select'}
                 defaultValue={'Select a country / region'}
@@ -165,46 +150,13 @@ function Checkout() {
               <Input
                 className={cx('input-form')}
                 inputClass={cx('bill-input')}
-                label="Street address *"
+                label="Address *"
                 {...register('streetAddress')}
                 error={errors.streetAddress}
                 type={'text'}
-                placeholder="House number and street name"
+                placeholder="Address"
               />
-              <Input
-                ref={streetAddress2Ref}
-                type={'text'}
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                errors={'hello'}
-                placeholder="Apartment, suite, unit, etc. (optional)"
-              />
-              <Input
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                label="Town / City *"
-                {...register('town')}
-                error={errors.town}
-                type={'text'}
-                placeholder="Town / City"
-              />
-              <Input
-                ref={countryRef}
-                type={'text'}
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                label="County (optional)"
-                errors={'hello'}
-              />
-              <Input
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                label="Postcode *"
-                {...register('postCode')}
-                error={errors.postCode}
-                type={'text'}
-                placeholder="Postcode"
-              />
+
               <Input
                 className={cx('input-form')}
                 inputClass={cx('bill-input')}
@@ -214,30 +166,8 @@ function Checkout() {
                 type={'text'}
                 placeholder="Phone"
               />
-              <Input
-                className={cx('input-form')}
-                inputClass={cx('bill-input')}
-                label="Email address *"
-                {...register('email')}
-                error={errors.email}
-                type={'text'}
-                placeholder="Email"
-              />
             </div>
-            <CheckoutOrder
-              fristNameRef={fristNameRef}
-              lastNameRef={lastNameRef}
-              companyRef={companyRef}
-              regionRef={regionRef}
-              streetAddressRef={streetAddressRef}
-              streetAddress2Ref={streetAddress2Ref}
-              cityRef={cityRef}
-              countryRef={countryRef}
-              postCodeRef={postCodeRef}
-              phoneRef={phoneRef}
-              emailRef={emailRef}
-              register={register}
-            />
+            <CheckoutOrder register={register} />
           </form>
         ) : (
           <CartEmpty />

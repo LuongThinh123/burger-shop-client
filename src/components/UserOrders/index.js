@@ -28,7 +28,7 @@ function UserOrders() {
 
   const onStatusChangeUpdate = useCallback(
     (id) => {
-      setOrders(orders.filter((order) => order._id !== id));
+      setOrders(orders.filter((order) => order.id !== id));
     },
     [orders],
   );
@@ -58,9 +58,9 @@ function UserOrders() {
           orders.map((order) => {
             return (
               <OrderDetail
-                key={order._id}
+                key={order.id}
                 orderNumber={order.orderNumber}
-                orderId={order._id}
+                orderId={order.id}
                 status={order.status}
                 itemList={order.products}
                 allActiveStatusRef={allActiveStatusRef}

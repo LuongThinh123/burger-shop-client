@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function SearchItem({ data, onClick }) {
   return (
-    <Link to={`/detail/${data._id}`} className={cx('wrapper')} onClick={onClick}>
+    <Link to={`/detail/${data.id}`} className={cx('wrapper')} onClick={onClick}>
       <Image
         className={cx('product_img')}
         src={data.image ? require(`../../assets/images/${data.image}`) : ''}

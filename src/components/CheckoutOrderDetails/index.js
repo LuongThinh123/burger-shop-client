@@ -16,19 +16,22 @@ function CheckoutOrderDetails({ data }) {
     <div className={cx('order-details')}>
       <div className={cx('order-products')}>
         {productList.map((product) => {
-          total += product.sale * product.quantity;
+          total += product.product.priceSale * product.amount;
           return (
-            <div key={product._id} className={cx('product-item')}>
+            <div key={product.id} className={cx('product-item')}>
               <div className={cx('product-name')}>
                 <div className={cx('product-thumb')}>
-                  <Image className={cx('product-img')} src={require(`../../assets/images/${product.image}`)} />
+                  <Image
+                    className={cx('product-img')}
+                    src={`http://localhost:8080/api/file/download?fileName=${product.product.imageName}`}
+                  />
                 </div>
                 <div className={cx('name')}>
-                  <h4 className={cx('product-titile')}>{product.title}</h4>
-                  <strong className={cx('product-quantity')}> X {product.quantity}</strong>
+                  <h4 className={cx('product-titile')}>{product.product.name}</h4>
+                  <strong className={cx('product-quantity')}> X {product.amount}</strong>
                 </div>
               </div>
-              <div className={cx('product-price')}>${priceFormat(product.sale * product.quantity)}</div>
+              <div className={cx('product-price')}>${priceFormat(product.product.priceSale * product.amount)}</div>
             </div>
           );
         })}

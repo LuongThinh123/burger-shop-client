@@ -12,7 +12,6 @@
   .recomend-img {
     width: 58px;
     height: 58px;
-    display: flex;
 
     img {
       width: 100%;
@@ -24,6 +23,16 @@
 
   .item-information {
     margin-left: 10px;
+    flex: 1;
+
+    .item-name {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
   }
 }
 

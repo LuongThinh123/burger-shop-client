@@ -44,10 +44,10 @@ function DetailItem({ data, toastDispatch }) {
     <div className={cx('detail-item')}>
       <div className={cx('detail-item__slider')}>
         <div className={cx('item-imgBx')}>
-          {data.image ? (
+          {data.imageName ? (
             <Image
               className={cx('item-img')}
-              src={data.image ? require(`../../assets/images/${data.image}`) : ''}
+              src={data.imageName ? `http://localhost:8080/api/file/download?fileName=${data.imageName}` : ''}
               alt=""
             />
           ) : (
@@ -57,18 +57,18 @@ function DetailItem({ data, toastDispatch }) {
       </div>
 
       <div className={cx('item-infor')}>
-        <h1 className={cx('item-title')}>{data.title || <Skeleton count={0.5} />}</h1>
+        <h1 className={cx('item-title')}>{data.name || <Skeleton count={0.5} />}</h1>
         <div className={cx('item-price-status')}>
-          <span className={cx('item-price')}>{data.sale ? `$${data.sale}` : <Skeleton width={50} />}</span>
-          <span className={cx('item-status')}>{data.title && 'On stock'}</span>
+          <span className={cx('item-price')}>{data.priceSale ? `$${data.priceSale}` : <Skeleton width={50} />}</span>
+          <span className={cx('item-status')}>{data.name && 'On stock'}</span>
         </div>
 
         <div className={cx('item-description')}>{data.description || <Skeleton count={2.5} />}</div>
 
-        {data.title ? (
+        {data.name ? (
           <div className={cx('item__variation')}>
             <InputQuantity ref={inputQuantityRef} value={1} rounded className={cx('item-input')} />
-            <button className={cx('add-to-cart-btn', 'addToCart')} onClick={() => handleAddToCart(data._id)}>
+            <button className={cx('add-to-cart-btn', 'addToCart')} onClick={() => handleAddToCart(data.id)}>
               Add to cart
             </button>
           </div>
@@ -76,7 +76,7 @@ function DetailItem({ data, toastDispatch }) {
           <Skeleton count={0.5} height={50} />
         )}
 
-        {data.title && (
+        {data.name && (
           <>
             <div className={cx('item__meta')}>
               <span className={cx('sku__wrapper')}>

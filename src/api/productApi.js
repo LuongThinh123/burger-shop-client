@@ -15,13 +15,13 @@ export const getProducts = async (filterState) => {
   try {
     // console.log(params);
     const params = {
-      page: filterState?.page,
-      limit: filterState?.limit,
-      search: filterState?.searchTitle,
-      price: filterState.price ? filterState.price.join(',') : '',
-      sort: filterState?.sort,
-      order: filterState?.order,
-      categoryIdList: filterState.categoryIdList ? filterState.categoryIdList.join(',') : '',
+      // page: filterState?.page,
+      // limit: filterState?.limit,
+      // search: filterState?.searchTitle,
+      // price: filterState.price ? filterState.price.join(',') : '',
+      // sort: filterState?.sort,
+      // order: filterState?.order,
+      // categoryIdList: filterState.categoryIdList ? filterState.categoryIdList.join(',') : '',
     };
 
     const result = await request.get(`/products`, { params });
@@ -34,8 +34,8 @@ export const getProducts = async (filterState) => {
 
 export const getProductById = async (id) => {
   try {
-    const result = await request.get(`/products/${id}`);
-    return result;
+    const result = await request.get(`/products?id=${id}`);
+    return result.records?.[0];
     // return params;
   } catch (err) {
     console.log(err);
@@ -44,8 +44,8 @@ export const getProductById = async (id) => {
 
 export const getRandomProducts = async (number) => {
   try {
-    const result = await request.get(`/products/random?number=${number}`);
-    return result;
+    const result = await request.get(`/products`);
+    return result.records;
     // return params;
   } catch (err) {
     console.log(err);

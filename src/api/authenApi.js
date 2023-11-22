@@ -16,9 +16,9 @@ export const login = async (user, dispatch, navigate) => {
       alert('Password or Username is incorrect');
       return;
     }
-    dispatch(loginSuccess(res));
+    dispatch(loginSuccess(res.user));
     localStorage.clear();
-    setUser(res);
+    setUser(res.user);
     setAccessToken(res.accessToken || '');
     navigate('/');
   } catch (err) {

@@ -10,79 +10,8 @@ import { getCartProducts } from '~/utils/localStorage';
 
 const cx = classNames.bind(styles);
 
-function CheckoutOrder({
-  fristNameRef,
-  lastNameRef,
-  companyRef,
-  regionRef,
-  streetAddressRef,
-  streetAddress2Ref,
-  cityRef,
-  countryRef,
-  postCodeRef,
-  phoneRef,
-  emailRef,
-  register,
-}) {
+function CheckoutOrder({ register }) {
   const [radioChecked, setRadioChecked] = useState(1);
-
-  // const handlePlaceOrder = (e) => {
-  //   e.preventDefault();
-
-  //   let payment = '';
-  //   switch (radioChecked) {
-  //     case 1:
-  //       payment = 'Direct bank transfer';
-  //       break;
-  //     case 2:
-  //       payment = 'Check payments';
-  //       break;
-  //     case 3:
-  //       payment = 'Cash on delivery';
-  //       break;
-  //     case 4:
-  //       payment = 'PayPal';
-  //       break;
-  //     default:
-  //   }
-
-  //   const orderNumber = randomNumber(99999999, 10000000);
-  //   const orderDate = getCurrentDateTime();
-
-  //   const shippingInfor = {
-  //     firstName: fristNameRef.current.value,
-  //     lastNameRef: lastNameRef.current.value,
-  //     companyRef: companyRef.current.value,
-  //     regionRef: regionRef.current.value,
-  //     streetAddressRef: streetAddressRef.current.value,
-  //     streetAddress2Ref: streetAddress2Ref.current.value,
-  //     cityRef: cityRef.current.value,
-  //     countryRef: countryRef.current.value,
-  //     postCodeRef: postCodeRef.current.value,
-  //     phoneRef: phoneRef.current.value,
-  //     emailRef: emailRef.current.value,
-  //     payment: payment,
-  //     orderDate,
-  //     orderNumber,
-  //   };
-
-  //   const products = getCartProducts();
-  //   const totalPrice = getTotalCartProducts();
-
-  //   setShippingInfor({ ...shippingInfor, totalPrice: totalPrice });
-  //   setOrderDetails(products);
-  //   setCartProducts([]);
-
-  //   const orderInfor = {
-  //     products,
-  //     totalPrice,
-  //     shippingInfor,
-  //   };
-
-  //   orderApi.addOrder(getAccessToken(), orderInfor);
-
-  //   navigate('/checkout-done');
-  // };
 
   return (
     <div className={cx('your-order')}>
