@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { setAccessToken, setUser } from '~/utils/localStorage';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import { useAuthenContext } from '~/customHook';
@@ -11,6 +12,7 @@ import Input from '~/components/Input';
 import * as authenApi from '~/api/authenApi';
 import Button from '~/components/Button';
 import styles from './Register.module.scss';
+import { registerFailed, registerSuccess } from '~/reducers/actions/authenAction';
 
 const cx = classNames.bind(styles);
 
@@ -43,18 +45,21 @@ function Register() {
 
   const handleRegister = async (data) => {
     // preventDefault();
-
     const newUser = {
-      fullname: data.fullname,
+      fullName: data.fullname,
       email: data.email,
       username: data.username,
       password: data.password,
     };
-    // console.log(newUser);
 
-    const result = await authenApi.register(newUser, authenDispatch, navigate);
-    if (result.error) {
-      alert(result.errorMessage);
+    const result = await authenApi.register(newUser);
+    if (!result.error) {
+      authenDispatch(registerSuccess(''));
+      setUser(result);
+      navigate('/login');
+    } else {
+      authenDispatch(registerFailed(''));
+      alert(result.error);
     }
   };
 

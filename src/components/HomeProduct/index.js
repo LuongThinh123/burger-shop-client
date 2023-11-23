@@ -15,16 +15,16 @@ function HomeProduct() {
   console.log('re-render home product');
 
   useEffect(() => {
-    const fetchProductList = async () => {
-      try {
-        const response = await productApi.getRandomProducts(8);
-        console.log(response);
-        setproductList(response);
-      } catch (error) {
-        console.error('lỗi rồi');
-      }
-    };
-    fetchProductList();
+    // const fetchProductList = async () => {
+    //   try {
+    //     const response = await productApi.getRandomProducts(8);
+    //     console.log(response);
+    //     setproductList(response);
+    //   } catch (error) {
+    //     console.error('lỗi rồi');
+    //   }
+    // };
+    // fetchProductList();
   }, []);
 
   return (
