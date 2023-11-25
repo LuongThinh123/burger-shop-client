@@ -21,6 +21,7 @@ function UserOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       const orders = await OrderApi.getOrders(getAccessToken(), orderStatus);
+      console.log('orders ne', orders);
       setOrders(orders);
     };
     fetchOrders();
@@ -54,7 +55,7 @@ function UserOrders() {
         </Button>
       </div>
       <div className={cx('orders')}>
-        {orders.length !== 0 ? (
+        {orders != null && orders.length !== 0 ? (
           orders.map((order) => {
             return (
               <OrderDetail

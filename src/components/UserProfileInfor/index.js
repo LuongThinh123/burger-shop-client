@@ -42,13 +42,13 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
 
   const handleOnSave = async (data) => {
     const userInformation = {
-      username: data.username,
-      fullname: data.fullname,
+      fullName: data.fullname,
       email: data.email,
       phone: data.phone,
     };
     setUser({ ...userInfor, ...userInformation });
     const response = await userApi.updateUserInfor(userInformation, userInfor.accessToken);
+    alert(userInfor.accessToken);
     if (response.error) {
       toastDispatch(
         addNotification({

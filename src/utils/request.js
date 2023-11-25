@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 
 const request = axios.create({
   // baseURL: 'https://burger-shop-server.vercel.app',
-  baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://localhost:3000/api',
   headers: {
     'content-type': 'application/json',
   },
