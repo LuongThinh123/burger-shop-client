@@ -1,18 +1,20 @@
-import { useRef } from 'react';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-
-import styles from './CartPageProduct.module.scss';
 import * as cartApi from '~/api/cartApi';
-import InputQuantity from '~/components/InputQuantity';
+
 import {
   getAccessToken,
-  updateCartProductsItem,
-  removeCartProductsItem,
   getTotalCartProducts,
+  removeCartProductsItem,
+  updateCartProductsItem,
 } from '~/utils/localStorage';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InputQuantity from '~/components/InputQuantity';
+import classNames from 'classnames/bind';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { priceFormat } from '~/utils/priceFormat';
+import styles from './CartPageProduct.module.scss';
+import { useRef } from 'react';
+
 const cx = classNames.bind(styles);
 
 function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
@@ -57,7 +59,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
         <div className={cx('product_imgBox')}>
           <img
             className={cx('product_img')}
-            src={`http://localhost:8080/api/file/download?fileName=${data.imageName}`}
+            src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.imageName}`}
             alt=""
           />
         </div>

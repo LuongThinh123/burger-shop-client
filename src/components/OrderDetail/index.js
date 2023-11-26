@@ -1,11 +1,12 @@
-import { memo, useEffect, useRef } from 'react';
-import classNames from 'classnames/bind';
-
-import images from '~/assets/images';
-import { getAccessToken } from '~/utils/localStorage';
-import { priceFormat } from '~/utils/priceFormat';
-import Button from '~/components/Button';
 import * as OrderApi from '~/api/orderApi';
+
+import { memo, useEffect, useRef } from 'react';
+
+import Button from '~/components/Button';
+import classNames from 'classnames/bind';
+import { getAccessToken } from '~/utils/localStorage';
+import images from '~/assets/images';
+import { priceFormat } from '~/utils/priceFormat';
 import styles from './OrderDetail.module.scss';
 
 const cx = classNames.bind(styles);
@@ -68,7 +69,7 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
                     <div className={cx('product-imgBox')}>
                       <img
                         className={cx('product_img')}
-                        src={`http://localhost:8080/api/file/download?fileName=${item.product.imageName}`}
+                        src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${item.product.imageName}`}
                         alt=""
                       />
                     </div>

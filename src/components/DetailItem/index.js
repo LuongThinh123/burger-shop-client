@@ -1,16 +1,18 @@
-import classNames from 'classnames/bind';
-import { memo, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import Image from '~/components/Image';
 import * as cartApi from '~/api/cartApi';
-import { getAccessToken } from '~/utils/localStorage';
+
+import { memo, useRef } from 'react';
+
+import Image from '~/components/Image';
 import InputQuantity from '~/components/InputQuantity';
+import Skeleton from 'react-loading-skeleton';
 import { addNotification } from '~/reducers/actions/toastAction';
-import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames/bind';
+import { getAccessToken } from '~/utils/localStorage';
 import styles from './DetailItem.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const cx = classNames.bind(styles);
 // const data = {};
@@ -47,7 +49,9 @@ function DetailItem({ data, toastDispatch }) {
           {data.imageName ? (
             <Image
               className={cx('item-img')}
-              src={data.imageName ? `http://localhost:8080/api/file/download?fileName=${data.imageName}` : ''}
+              src={
+                data.imageName ? `${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.imageName}` : ''
+              }
               alt=""
             />
           ) : (
