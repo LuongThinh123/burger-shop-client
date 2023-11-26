@@ -1,14 +1,15 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
-
-import styles from './UserOrders.module.scss';
-import Button from '~/components/Button';
-import OrderDetail from '~/components/OrderDetail';
-import { getAccessToken } from '~/utils/localStorage';
-import { dayFormat } from '~/utils/dateFormat';
 import * as OrderApi from '~/api/orderApi';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import Button from '~/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import OrderDetail from '~/components/OrderDetail';
+import classNames from 'classnames/bind';
+import { dayFormat } from '~/utils/dateFormat';
+import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { getAccessToken } from '~/utils/localStorage';
+import styles from './UserOrders.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -33,7 +34,7 @@ function UserOrders() {
     },
     [orders],
   );
-
+  console.log(orders);
   return (
     <div className={cx('user-orders')}>
       <div className={cx('order-status')}>

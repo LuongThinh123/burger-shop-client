@@ -18,7 +18,7 @@ import { useRef } from 'react';
 const cx = classNames.bind(styles);
 
 function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
-  console.log('re-render cart product');
+  console.log('re-render cart product', data);
   const inputRef = useRef();
   const totalAmountRef = useRef();
   const productRef = useRef();
@@ -59,7 +59,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
         <div className={cx('product_imgBox')}>
           <img
             className={cx('product_img')}
-            src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.imageName}`}
+            src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.product.imageName}`}
             alt=""
           />
         </div>
