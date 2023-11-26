@@ -55,7 +55,7 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
         </div>
         {status && (
           <h2 ref={statusTitleRef} className={cx('order-status')}>
-            {status.title}
+            {status}
           </h2>
         )}
       </div>

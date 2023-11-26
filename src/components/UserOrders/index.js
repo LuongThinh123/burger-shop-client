@@ -22,8 +22,13 @@ function UserOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       const orders = await OrderApi.getOrders(getAccessToken(), orderStatus);
-      console.log('orders ne', orders);
-      setOrders(orders);
+
+      setOrders(
+        orders.filter((o) => {
+          if (!orderStatus) return true;
+          return o.status === orderStatus;
+        }),
+      );
     };
     fetchOrders();
   }, [orderStatus]);
@@ -34,7 +39,7 @@ function UserOrders() {
     },
     [orders],
   );
-  console.log(orders);
+
   return (
     <div className={cx('user-orders')}>
       <div className={cx('order-status')}>
@@ -45,13 +50,22 @@ function UserOrders() {
         >
           All
         </Button>
-        <Button className={cx('status', orderStatus === 1 && 'active-status')} onClick={() => setOrderStatus(1)}>
+        <Button
+          className={cx('status', orderStatus === 1 && 'active-status')}
+          onClick={() => setOrderStatus('PENDING')}
+        >
           Pending
         </Button>
-        <Button className={cx('status', orderStatus === 2 && 'active-status')} onClick={() => setOrderStatus(2)}>
+        <Button
+          className={cx('status', orderStatus === 2 && 'active-status')}
+          onClick={() => setOrderStatus('COMPLETED')}
+        >
           Completed
         </Button>
-        <Button className={cx('status', orderStatus === 3 && 'active-status')} onClick={() => setOrderStatus(3)}>
+        <Button
+          className={cx('status', orderStatus === 3 && 'active-status')}
+          onClick={() => setOrderStatus('CANCELED')}
+        >
           Canceled
         </Button>
       </div>
@@ -61,10 +75,10 @@ function UserOrders() {
             return (
               <OrderDetail
                 key={order.id}
-                orderNumber={order.orderNumber}
+                orderNumber={order.id}
                 orderId={order.id}
                 status={order.status}
-                itemList={order.products}
+                itemList={order.billDetails}
                 allActiveStatusRef={allActiveStatusRef}
                 onStatusChangeUpdate={onStatusChangeUpdate}
                 orderDate={dayFormat(order.createdAt)}
