@@ -9,7 +9,7 @@ import { setAccessToken } from './localStorage';
 
 const request = axios.create({
   // baseURL: 'https://burger-shop-server.vercel.app',
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL + '/api',
   headers: {
     'content-type': 'application/json',
   },
