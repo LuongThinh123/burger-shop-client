@@ -24,7 +24,7 @@ export const getOrders = async (accessToken, status) => {
 
 export const updateOrderStatus = async (accessToken, orderStatusChangeInfor) => {
   try {
-    const result = await request.post(`/bill/update`, orderStatusChangeInfor, {
+    const result = await request.put(`/orders/cancel`, orderStatusChangeInfor, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     return result;
