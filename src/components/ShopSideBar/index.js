@@ -7,6 +7,7 @@ import styles from './ShopSideBar.module.scss';
 import CategoryList from '../CategoryList';
 import PriceFilter from '~/components/PriceFilter';
 import ShopSideBarProducts from '../ShopSideBarProducts';
+import ToppingList from '../ToppingList';
 // import { useFilterContext } from '~/customHook'
 
 const cx = classNames.bind(styles);
@@ -21,6 +22,7 @@ function ShopSideBar({ filterState, filterDispatch, ...passProps }) {
   return (
     <div className={cx('shop_sidebar')}>
       <CategoryList categoryFilter={filterState.categoryIdList} filterDispatch={filterDispatch} />
+      <ToppingList />
       <PriceFilter priceFilter={filterState.price} filterDispatch={filterDispatch} />
       <ShopSideBarProducts />
     </div>

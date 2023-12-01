@@ -1,6 +1,7 @@
 const initState = {
   searchTitle: '',
   categoryIdList: [],
+  toppingIdList: [],
   price: ['0', '30'],
   page: 1,
   sort: '',
@@ -19,6 +20,18 @@ function filterReducer(state, action) {
       return {
         ...state,
         categoryIdList: state.categoryIdList.filter((e) => e !== action.payload),
+        page: 1,
+      };
+    case 'add_topping':
+      return {
+        ...state,
+        toppingIdList: [...state.toppingIdList, action.payload],
+        page: 1,
+      };
+    case 'delete_topping':
+      return {
+        ...state,
+        toppingIdList: state.toppingIdList.filter((e) => e !== action.payload),
         page: 1,
       };
     case 'set_search_title':

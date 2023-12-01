@@ -17,11 +17,11 @@ export const getProducts = async (filterState) => {
     // console.log(params);
     let params = {
       page: filterState?.page,
-      search: filterState?.searchTitle == '' ? null : filterState?.searchTitle,
+      search: filterState?.searchTitle === '' ? null : filterState?.searchTitle,
       priceSaleFrom: filterState?.price?.[0],
       priceSaleAt: filterState?.price?.[1],
-      sort: filterState?.sort == '' ? null : filterState?.sort,
-      order: filterState?.order == '' ? null : filterState?.order,
+      sort: filterState?.sort === '' ? null : filterState?.sort,
+      order: filterState?.order === '' ? null : filterState?.order,
       categoryId: filterState?.categoryIdList?.length > 0 ? filterState.categoryIdList : null,
       searchType: 'ADVANCED',
     };

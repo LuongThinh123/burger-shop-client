@@ -8,6 +8,16 @@ export const deleteCategory = (payload) => ({
   payload,
 });
 
+export const addTopping = (payload) => ({
+  type: 'add_topping',
+  payload,
+});
+
+export const deleteTopping = (payload) => ({
+  type: 'delete_topping',
+  payload,
+});
+
 export const changePage = (payload) => ({
   type: 'change_page',
   payload,

@@ -1,0 +1,64 @@
+.topping_container {
+  margin-top: 26px;
+  padding: 10px;
+  border: 2px solid var(--grayBorder);
+  border-radius: 20px;
+}
+
+.sidebar_header {
+  // margin: 7px 0;
+  margin-bottom: 8px;
+  height: var(--shop-category-default-height);
+  line-height: var(--shop-category-default-height);
+  // background-color: var(--primary);
+
+  .header {
+    padding-left: 10px;
+    font-size: 2rem;
+    color: var(--black);
+  }
+}
+
+.topping_list {
+  padding: 10px 15px;
+  margin: 0;
+  list-style: none;
+  background-color: var(--chillYellow);
+  border-radius: 20px;
+
+  .topping {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    height: 60px;
+    border-bottom: 2px var(--grayBorder) dashed;
+
+    .topping-name {
+      padding: 18px 5px;
+      cursor: pointer;
+      flex: 1;
+      // &:hover {
+      //   color: var(--primary);
+      // }
+    }
+
+    .topping-checkbox {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      outline: none;
+      border: 2px solid var(--gray);
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+  }
+
+  .topping:first-child {
+    height: 50px;
+  }
+
+  .topping:last-child {
+    height: 50px;
+    border-bottom: none;
+  }
+}
