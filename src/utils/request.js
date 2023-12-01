@@ -13,6 +13,7 @@ const request = axios.create({
   headers: {
     'content-type': 'application/json',
   },
+  withCredentials: false,
   paramsSerializer: (params) => queryString.stringify(params),
 });
 

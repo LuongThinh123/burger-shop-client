@@ -152,3 +152,20 @@
 .order-footer-total {
   font-size: 2.8rem;
 }
+.btn-cancel {
+  background-color: rgb(243, 115, 115);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-cancel:hover {
+  background-color: rgb(212, 61, 61);
+}
+.btn-action {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
