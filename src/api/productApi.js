@@ -23,6 +23,7 @@ export const getProducts = async (filterState) => {
       sort: filterState?.sort === '' ? null : filterState?.sort,
       order: filterState?.order === '' ? null : filterState?.order,
       categoryId: filterState?.categoryIdList?.length > 0 ? filterState.categoryIdList : null,
+      toppingIds: filterState?.toppingIdList?.length > 0 ? filterState.toppingIdList : null,
       searchType: 'ADVANCED',
     };
 
