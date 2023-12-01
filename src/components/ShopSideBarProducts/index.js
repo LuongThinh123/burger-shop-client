@@ -29,7 +29,7 @@ function ShopSideBarProducts() {
     <div className={cx('food-recomend')}>
       <h3 className={cx('recomend-title')}>We recomend</h3>
       <div className={cx('recomend-box')}>
-        {productList.length !== 0 ? (
+        {productList?.length !== 0 ? (
           productList.map((product) => (
             <div key={product.id} className={cx('recomend-item')}>
               <div className={cx('recomend-img')}>
