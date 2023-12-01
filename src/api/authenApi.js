@@ -26,6 +26,23 @@ export const login = async (user, dispatch, navigate) => {
   }
 };
 
+export const forget = async (userData) => {
+  try {
+    request.post(`/auth/forget`, userData);
+  } catch (err) {
+    alert('Có lỗi xảy ra');
+  }
+};
+
+export const recovery = async (user) => {
+  try {
+    await request.post(`/auth/otp`, user);
+    return { error: null };
+  } catch (err) {
+    return { error: err.response.data.message };
+  }
+};
+
 export const register = async (user) => {
   try {
     const res = await request.post(`/auth/register`, user);

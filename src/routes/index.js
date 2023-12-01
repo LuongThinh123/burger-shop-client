@@ -14,10 +14,14 @@ import CheckoutDone from '~/pages/CheckoutDone';
 import UserPurchase from '~/pages/UserPurchase';
 import UserProfile from '~/pages/UserProfile';
 import Contact from '~/pages/Contact';
+import ForgotPassword from '~/pages/ForgotPassword';
+import RecoveryPassword from '~/pages/RecoveryPassword';
 
 export const publicRoutes = [
   { path: config.routes.home, component: Home },
   { path: config.routes.login, component: Login, layout: AuthenLayout },
+  { path: config.routes.forgotPassword, component: ForgotPassword, layout: AuthenLayout },
+  { path: config.routes.recoveryPassword, component: RecoveryPassword, layout: AuthenLayout },
   { path: config.routes.register, component: Register, layout: AuthenLayout },
   { path: config.routes.products, component: Product },
   { path: config.routes.detail, component: Detail },

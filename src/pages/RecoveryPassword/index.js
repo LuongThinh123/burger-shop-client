@@ -11,17 +11,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as authenApi from '~/api/authenApi';
 import Input from '~/components/Input';
-import styles from './Login.module.scss';
+import styles from './RecoveryPassword.module.scss';
 import config from '~/config';
+import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
-function Login() {
-  // console.log('re-render login');
+function RecoveryPassword() {
   const validationSchema = yup
     .object({
+      OTP: yup.string().required('This field is required'),
       username: yup.string().required('This field is required'),
-      password: yup.string().required('This field is required'),
+      password: yup.string().required('This field is required').min(6).max(15),
+      confirmPassword: yup
+        .string()
+        .required('This field is required')
+        .oneOf([yup.ref('password')], 'Passwords do not match'),
     })
     .required();
 
@@ -38,19 +43,35 @@ function Login() {
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
-  const handleLogin = (data) => {
-    const newUser = {
+  const handleRecoveryPassword = async (data) => {
+    const userData = {
+      OTP: data.OTP.trim(' '),
       username: data.username.trim(' '),
       password: data.password,
     };
-    authenApi.login(newUser, authenDispatch, navigate);
+    const res = await authenApi.recovery(userData);
+    if (!res.error) {
+      navigate(routes.login);
+    } else {
+      alert(res.error);
+    }
   };
 
   return (
     <AuthenFormWrapper className={cx('login_container')}>
-      <form className={cx('login_form')} onSubmit={handleSubmit(handleLogin)}>
-        <h1>Wellcome</h1>
+      <h1>Recovery Password</h1>
+      <form className={cx('login_form')} onSubmit={handleSubmit(handleRecoveryPassword)}>
         <div className={cx('login_body')}>
+          <Input
+            {...register('OTP', {
+              required: true,
+            })}
+            error={errors.OTP}
+            type={'text'}
+            placeholder="Enter your OTP"
+            className={cx('feild')}
+            inputClass={cx('form-input')}
+          />
           <Input
             {...register('username', {
               required: true,
@@ -67,9 +88,20 @@ function Login() {
             })}
             error={errors.password}
             type={'password'}
-            placeholder="Enter your password"
+            placeholder="Enter your new password"
             className={cx('feild')}
             inputClass={cx('form-input')}
+          />
+          <Input
+            {...register('confirmPassword', {
+              required: true,
+            })}
+            error={errors.confirmPassword}
+            type={'password'}
+            placeholder="Comfirm your password"
+            className={cx('feild')}
+            inputClass={cx('form-input')}
+            rounded
           />
           {/* <div className={cx('login_options')}>
             <label className={cx('rememberMe_checkbox')}>
@@ -83,7 +115,7 @@ function Login() {
             </div>
           </div> */}
           <Button className={cx('signIn_btn')} primary>
-            Sign in
+            Confirm
           </Button>
         </div>
       </form>
@@ -97,19 +129,8 @@ function Login() {
           <span className={cx('connect_google_title')}>Sign in with google</span>
         </div>
       </div> */}
-      <div className={cx('register_navigate')}>
-        <span className={cx('question')}>Don't have account yet ?</span>
-        <Link className={cx('register_link')} to={config.routes.register}>
-          <span className={cx('title')}> Register</span>
-        </Link>
-      </div>
-      <div className={cx('forgot_navigate')}>
-        <Link className={cx('forgot_link')} to={config.routes.forgotPassword}>
-          <span className={cx('question')}>Forgot password?</span>
-        </Link>
-      </div>
     </AuthenFormWrapper>
   );
 }
 
-export default Login;
+export default RecoveryPassword;

@@ -1,6 +1,8 @@
 const routes = {
   home: '/',
   login: '/login',
+  forgotPassword: '/forgotPassword',
+  recoveryPassword: '/recoveryPassword',
   register: '/register',
   about: '/about',
   products: '/products',
