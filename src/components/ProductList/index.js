@@ -9,6 +9,7 @@ import Pagination from '~/components/Pagination';
 import { changePage } from '~/reducers/actions/filterAction';
 import * as productApi from '~/api/productApi';
 import { useToastContext } from '~/customHook';
+import _ from 'lodash';
 
 const cx = classNames.bind(styles);
 
@@ -20,10 +21,45 @@ function ProductList({ filterState, filterDispatch }) {
   useEffect(() => {
     const fetchProductList = async () => {
       try {
-        const response = await productApi.getProducts(filterState);
+        let response = await productApi.getProducts(filterState);
         console.log(response);
+        // if (filterState?.order == 'asc') {
+        //   if (Array.isArray(response)) {
+        //     response?.records?.sort((a, b) => {
+        //       return a.priceSale < b.priceSale;
+        //     });
+        //   }
+        // } else if (filterState?.order == 'desc') {
+        //   if (Array.isArray(response)) {
+        //     response?.records?.sort((a, b) => {
+        //       return a.priceSale > b.priceSale;
+        //     });
+        //   }
+        // }
+        let products = response.records;
+        console.log(Array.isArray(products));
+        console.log('Asc');
+        if (filterState?.order == 'asc') {
+          if (Array.isArray(products)) {
+            products = products?.sort((a, b) => {
+              return a.priceSale - b.priceSale;
+            });
+            console.log(products);
+          }
+        } else if (filterState?.order == 'desc') {
+          console.log('desc');
+          if (Array.isArray(products)) {
+            products = products?.sort((a, b) => {
+              return b.priceSale - a.priceSale;
+            });
+            console.log(products);
+          }
+        }
+        // console.log('Product ne', products);
+        response.records = [...products];
         setProductListInfor(response);
       } catch (error) {
+        console.log(error);
         console.error('lỗi rồi');
       }
     };
