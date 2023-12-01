@@ -1,13 +1,15 @@
 // api/axiosClient.js
+
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import queryString from 'query-string';
 import { setAccessToken } from './localStorage';
-import jwt_decode from 'jwt-decode';
+
 // Set up default config for http requests heret
 
 const request = axios.create({
   // baseURL: 'https://burger-shop-server.vercel.app',
-  baseURL: 'http://localhost:8080/api',
+  baseURL: process.env.REACT_APP_API_URL + '/api',
   headers: {
     'content-type': 'application/json',
   },

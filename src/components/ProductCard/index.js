@@ -1,15 +1,16 @@
-import { memo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { v4 as uuidv4 } from 'uuid';
-
-import { addNotification } from '~/reducers/actions/toastAction';
-import { getAccessToken } from '~/utils/localStorage';
 import * as cartApi from '~/api/cartApi';
+
+import { Link, useNavigate } from 'react-router-dom';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from '~/components/Image';
+import { addNotification } from '~/reducers/actions/toastAction';
+import classNames from 'classnames/bind';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { getAccessToken } from '~/utils/localStorage';
+import { memo } from 'react';
 import styles from './ProductCard.module.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 const cx = classNames.bind(styles);
 
@@ -47,7 +48,7 @@ function ProductCard({ data, toastDispatch, className }) {
       <Link to={`/detail/${data.id}`}>
         <div className={cx('product-img')}>
           {/* <img /> */}
-          <Image src={`http://localhost:8080/api/file/download?fileName=${data.imageName}`} alt="" />
+          <Image src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.imageName}`} alt="" />
         </div>
       </Link>
       <div className={cx('product-information')}>

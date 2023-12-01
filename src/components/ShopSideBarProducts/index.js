@@ -1,10 +1,11 @@
-import { useState, useEffect, memo } from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames/bind';
-
 import * as productApi from '~/api/productApi';
-import styles from './ShopSideBarProducts.module.scss';
+
+import { memo, useEffect, useState } from 'react';
+
+import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import classNames from 'classnames/bind';
+import styles from './ShopSideBarProducts.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -28,12 +29,15 @@ function ShopSideBarProducts() {
     <div className={cx('food-recomend')}>
       <h3 className={cx('recomend-title')}>We recomend</h3>
       <div className={cx('recomend-box')}>
-        {productList.length !== 0 ? (
+        {productList?.length !== 0 ? (
           productList.map((product) => (
             <div key={product.id} className={cx('recomend-item')}>
               <div className={cx('recomend-img')}>
                 <Link to={`/detail/${product.id}`}>
-                  <img src={`http://localhost:8080/api/file/download?fileName=${product.imageName}`} alt="" />
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${product.imageName}`}
+                    alt=""
+                  />
                 </Link>
               </div>
               <div className={cx('item-information')}>

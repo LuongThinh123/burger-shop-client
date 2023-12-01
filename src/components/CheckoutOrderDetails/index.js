@@ -1,6 +1,7 @@
-import classNames from 'classnames/bind';
 import { memo, useState } from 'react';
+
 import Image from '~/components/Image';
+import classNames from 'classnames/bind';
 import images from '~/assets/images';
 import { priceFormat } from '~/utils/priceFormat';
 import styles from './CheckoutOrderDetails.module.scss';
@@ -23,7 +24,7 @@ function CheckoutOrderDetails({ data }) {
                 <div className={cx('product-thumb')}>
                   <Image
                     className={cx('product-img')}
-                    src={`http://localhost:8080/api/file/download?fileName=${product.product.imageName}`}
+                    src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${product.product.imageName}`}
                   />
                 </div>
                 <div className={cx('name')}>
