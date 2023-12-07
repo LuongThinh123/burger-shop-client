@@ -38,19 +38,20 @@ function ForgotPassword() {
   const navigate = useNavigate();
 
   const handleForgotPassword = async (data) => {
+    const username = data.username.trim(' ');
     const userData = {
-      username: data.username.trim(' '),
+      username,
     };
     await authenApi.forget(userData);
 
-    navigate(config.routes.recoveryPassword);
+    navigate(`/recoveryPassword/${username}`);
   };
 
   return (
     <AuthenFormWrapper className={cx('forgot_container')}>
       <form className={cx('forgot_form')} onSubmit={handleSubmit(handleForgotPassword)}>
         <h1>Forgot Password</h1>
-        <p className={cx('forgot_description')}>Fill in your registration email and click continue</p>
+        <p className={cx('forgot_description')}>Fill in your registration username and click continue</p>
         <div className={cx('forgot_body')}>
           <Input
             className={cx('forgot_password_input')}
