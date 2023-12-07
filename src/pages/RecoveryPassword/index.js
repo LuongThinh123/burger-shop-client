@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -21,7 +21,7 @@ function RecoveryPassword() {
   const validationSchema = yup
     .object({
       OTP: yup.string().required('This field is required'),
-      username: yup.string().required('This field is required'),
+      // username: yup.string().required('This field is required'),
       password: yup.string().required('This field is required').min(6).max(15),
       confirmPassword: yup
         .string()
@@ -40,13 +40,17 @@ function RecoveryPassword() {
     resolver: yupResolver(validationSchema),
   });
 
+  const params = useParams();
+  const { userName } = params;
+
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
   const handleRecoveryPassword = async (data) => {
+    console.log(userName);
     const userData = {
       OTP: data.OTP.trim(' '),
-      username: data.username.trim(' '),
+      username: userName,
       password: data.password,
     };
     const res = await authenApi.recovery(userData);
@@ -59,7 +63,8 @@ function RecoveryPassword() {
 
   return (
     <AuthenFormWrapper className={cx('login_container')}>
-      <h1>Recovery Password</h1>
+      <h1 className={cx('recovery_title')}>Recovery Password</h1>
+      <p className={cx('recovery_description')}>Please enter the OTP sent to your email and create a new password</p>
       <form className={cx('login_form')} onSubmit={handleSubmit(handleRecoveryPassword)}>
         <div className={cx('login_body')}>
           <Input
@@ -72,7 +77,7 @@ function RecoveryPassword() {
             className={cx('feild')}
             inputClass={cx('form-input')}
           />
-          <Input
+          {/* <Input
             {...register('username', {
               required: true,
             })}
@@ -81,7 +86,7 @@ function RecoveryPassword() {
             placeholder="Enter your username"
             className={cx('feild')}
             inputClass={cx('form-input')}
-          />
+          /> */}
           <Input
             {...register('password', {
               required: true,

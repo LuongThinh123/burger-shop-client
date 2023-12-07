@@ -2,7 +2,7 @@ const routes = {
   home: '/',
   login: '/login',
   forgotPassword: '/forgotPassword',
-  recoveryPassword: '/recoveryPassword',
+  recoveryPassword: '/recoveryPassword/:userName',
   register: '/register',
   about: '/about',
   products: '/products',
