@@ -47,6 +47,9 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
   //   OrderApi.updateOrderStatus(getAccessToken(), orderStatusChangeInfor);
   // };
   const cancelOrder = () => {
+    const result = window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?');
+    if (!result) return;
+
     const orderId = orderBoxRef.current.dataset.id;
     setStatus('CANCELLED');
     OrderApi.updateOrderStatus(getAccessToken(), {
@@ -91,18 +94,6 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
                     </div>
                     <span className={cx('product-total')}>${priceFormat(item.product.priceSale * item.amount)}</span>
                   </div>
-                  {_status === 'PENDING' && (
-                    <div className={cx('btn-action')}>
-                      <button
-                        onClick={() => {
-                          cancelOrder();
-                        }}
-                        className={cx('btn-cancel')}
-                      >
-                        Huỷ đơn
-                      </button>
-                    </div>
-                  )}
                 </>
               );
             })
@@ -118,6 +109,13 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
             Total:
             <span> ${priceFormat(totalPrice)}</span>
           </div>
+          {_status === 'PENDING' && (
+            <div className={cx('btn-action')}>
+              <Button className={cx('status-change-btn')} onClick={() => cancelOrder()}>
+                CANCELLED
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
