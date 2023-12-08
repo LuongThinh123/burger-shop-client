@@ -8,6 +8,7 @@ export const addToCart = async (accessToken, product, navigate) => {
   } catch (err) {
     if (err.response.data.status === 401) navigate('/login');
     console.log(err);
+    if (err.response.data.status === 401) navigate('/login');
   }
 };
 
