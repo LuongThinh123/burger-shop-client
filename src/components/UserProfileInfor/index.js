@@ -35,7 +35,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
       username: userInfor.username,
       fullname: userInfor.fullName,
       email: userInfor.email,
-      phone: userInfor.phone,
+      // phone: userInfor.phone,
     },
     resolver: yupResolver(validationSchema),
   });
@@ -56,7 +56,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
         addNotification({
           id: uuidv4(),
           type: 'ERROR',
-          title: response.errorMessage,
+          title: response.error,
           message: 'Please try again',
         }),
       );
@@ -66,7 +66,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
         addNotification({
           id: uuidv4(),
           type: 'SUCCESS',
-          title: 'Đã cập nhật thông tin thành công',
+          title: 'Update user successfully',
           message: 'Successfully change information',
         }),
       );
@@ -116,7 +116,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
                   inputClass={cx('item-input')}
                 />
               </div>
-              <div className={cx('infor-item')}>
+              {/* <div className={cx('infor-item')}>
                 <div className={cx('item-title')}>Phone</div>
                 <Input
                   {...register('phone')}
@@ -125,7 +125,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
                   className={cx('item-input-field')}
                   inputClass={cx('item-input')}
                 />
-              </div>
+              </div> */}
               <Button primary className={cx('save-btn')}>
                 Save
               </Button>

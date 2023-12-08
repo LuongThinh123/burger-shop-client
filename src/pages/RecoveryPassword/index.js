@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import Button from '~/components/Button';
-import { useAuthenContext } from '~/customHook';
+import { useAuthenContext, useToastContext } from '~/customHook';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -14,6 +14,9 @@ import Input from '~/components/Input';
 import styles from './RecoveryPassword.module.scss';
 import config from '~/config';
 import routes from '~/config/routes';
+import { addNotification } from '~/reducers/actions/toastAction';
+import { v4 as uuidv4 } from 'uuid';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 
@@ -44,6 +47,8 @@ function RecoveryPassword() {
   const { userName } = params;
 
   const [, authenDispatch] = useAuthenContext();
+  const [, toastDispatch] = useToastContext();
+
   const navigate = useNavigate();
 
   const handleRecoveryPassword = async (data) => {
@@ -57,16 +62,23 @@ function RecoveryPassword() {
     if (!res.error) {
       navigate(routes.login);
     } else {
-      alert(res.error);
+      toastDispatch(
+        addNotification({
+          id: uuidv4(),
+          type: 'ERROR',
+          title: res.error,
+          message: 'Please try again',
+        }),
+      );
     }
   };
 
   return (
-    <AuthenFormWrapper className={cx('login_container')}>
+    <AuthenFormWrapper className={cx('recovery_container')}>
       <h1 className={cx('recovery_title')}>Recovery Password</h1>
       <p className={cx('recovery_description')}>Please enter the OTP sent to your email and create a new password</p>
-      <form className={cx('login_form')} onSubmit={handleSubmit(handleRecoveryPassword)}>
-        <div className={cx('login_body')}>
+      <form className={cx('recovery_form')} onSubmit={handleSubmit(handleRecoveryPassword)}>
+        <div className={cx('recovery_body')}>
           <Input
             {...register('OTP', {
               required: true,
@@ -119,7 +131,7 @@ function RecoveryPassword() {
               </Link>
             </div>
           </div> */}
-          <Button className={cx('signIn_btn')} primary>
+          <Button className={cx('confirm_btn')} primary>
             Confirm
           </Button>
         </div>
@@ -134,6 +146,7 @@ function RecoveryPassword() {
           <span className={cx('connect_google_title')}>Sign in with google</span>
         </div>
       </div> */}
+      <Toast position={'top-right'} timeAutoDelete={2800} />
     </AuthenFormWrapper>
   );
 }
