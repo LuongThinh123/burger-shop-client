@@ -7,12 +7,15 @@ import * as yup from 'yup';
 import { setAccessToken, setUser } from '~/utils/localStorage';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
-import { useAuthenContext } from '~/customHook';
+import { useAuthenContext, useToastContext } from '~/customHook';
 import Input from '~/components/Input';
 import * as authenApi from '~/api/authenApi';
 import Button from '~/components/Button';
 import styles from './Register.module.scss';
 import { registerFailed, registerSuccess } from '~/reducers/actions/authenAction';
+import { addNotification } from '~/reducers/actions/toastAction';
+import { v4 as uuidv4 } from 'uuid';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +44,7 @@ function Register() {
   });
 
   const [, authenDispatch] = useAuthenContext();
+  const [, toastDispatch] = useToastContext();
   const navigate = useNavigate();
 
   const handleRegister = async (data) => {
@@ -59,7 +63,15 @@ function Register() {
       navigate('/login');
     } else {
       authenDispatch(registerFailed(''));
-      alert(result.error);
+      // alert(result.error);
+      toastDispatch(
+        addNotification({
+          id: uuidv4(),
+          type: 'ERROR',
+          title: result.error,
+          message: 'Please try again',
+        }),
+      );
     }
   };
 
@@ -108,6 +120,7 @@ function Register() {
           <span className={cx('title')}> Login</span>
         </Link>
       </div>
+      <Toast position={'top-right'} timeAutoDelete={2800} />
     </AuthenFormWrapper>
   );
 }
