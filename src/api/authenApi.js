@@ -1,13 +1,14 @@
-import request from '~/utils/request';
-import { setAccessToken, setUser } from '~/utils/localStorage';
 import {
-  registerSuccess,
-  registerFailed,
-  loginSuccess,
   loginFailed,
-  logoutSuccess,
+  loginSuccess,
   logoutFailed,
+  logoutSuccess,
+  registerFailed,
+  registerSuccess,
 } from '~/reducers/actions/authenAction';
+import { setAccessToken, setUser } from '~/utils/localStorage';
+
+import request from '~/utils/request';
 
 export const login = async (user, dispatch, navigate) => {
   try {
@@ -23,6 +24,7 @@ export const login = async (user, dispatch, navigate) => {
     navigate('/');
   } catch (err) {
     dispatch(loginFailed());
+    alert('Password or Username is incorrect');
   }
 };
 
