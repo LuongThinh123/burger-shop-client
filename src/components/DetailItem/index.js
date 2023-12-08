@@ -27,7 +27,7 @@ function DetailItem({ data, toastDispatch }) {
     console.log(productId);
 
     const product = {
-      productId,
+      product: data,
       amount: inputQuantityRef.current.value,
     };
     cartApi.addToCart(getAccessToken(), product, navigate);

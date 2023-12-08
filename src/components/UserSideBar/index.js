@@ -22,7 +22,7 @@ function UserSideBar({ userInformation }) {
         </div>
         <div className={cx('mini-infor')}>
           <h4 className={cx('mini-nick-name')}>{userInfor.username}</h4>
-          <span className={cx('mini-full-name')}>{userInfor.fullname}</span>
+          <span className={cx('mini-full-name')}>{userInfor.fullName}</span>
         </div>
       </div>
       <div className={cx('options')}>

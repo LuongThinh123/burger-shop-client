@@ -40,7 +40,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
   const handleOnchageQuantity = () => {
     const productId = inputRef.current.dataset.id;
     const amount = inputRef.current.value;
-
+    // console.log(productId, amount);
     totalAmountRef.current.innerHTML = `$${priceFormat(amount * data.product.priceSale)}`;
     updateCartProductsItem(productId, amount);
     const productTotalPrice = priceFormat(getTotalCartProducts());
@@ -81,7 +81,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
       <div className={cx('product_quantity')}>
         <InputQuantity
           ref={inputRef}
-          productId={data.id}
+          productId={data.product.id}
           value={data.amount}
           className={cx('cartItem_quantity')}
           onCallApi={handleOnchageQuantity}

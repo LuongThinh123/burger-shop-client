@@ -39,10 +39,11 @@ function Search() {
     const fetchProductList = async () => {
       try {
         const response = await productApi.getProducts({
-          searchTitle: encodeURIComponent(debounced.trim()),
+          // searchTitle: encodeURIComponent(debounced.trim()),
+          searchTitle: debounced.trim(),
         });
-        setSearchResult(response.products);
-        console.log(response.products);
+        setSearchResult(response.records);
+        console.log(response.records);
       } catch (error) {
         console.error('lỗi rồi');
       }
@@ -71,7 +72,8 @@ function Search() {
   const handleSearchBtnClick = () => {
     if (!debounced.trim()) return;
     navigate('/products');
-    filterDispatch(setSearchTitle(encodeURIComponent(debounced.trim())));
+    // filterDispatch(setSearchTitle(encodeURIComponent(debounced.trim())));
+    filterDispatch(setSearchTitle(debounced.trim()));
     handleClear();
   };
 

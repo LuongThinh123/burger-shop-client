@@ -18,6 +18,7 @@ const Input = forwardRef(
       rounded,
       defaultValue,
       options,
+      readonly,
       onChange,
       ...inputProps
     },
@@ -68,6 +69,7 @@ const Input = forwardRef(
             id={id}
             type={type}
             name={name}
+            readOnly={readonly}
             // value={inputValue}
             onChange={onChange}
             {...inputProps}
