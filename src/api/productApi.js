@@ -1,5 +1,5 @@
-import request from '~/utils/request';
 import _ from 'lodash';
+import request from '~/utils/request';
 
 // const productApi = {
 //   getAll: (params) => {
@@ -53,7 +53,7 @@ export const getProductById = async (id) => {
 
 export const getRandomProducts = async (number) => {
   try {
-    const result = await request.get(`/products`);
+    const result = await request.get(`/products?pageSize=${number}`);
     return result.records;
     // return params;
   } catch (err) {

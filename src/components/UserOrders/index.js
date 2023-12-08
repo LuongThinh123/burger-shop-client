@@ -51,22 +51,22 @@ function UserOrders() {
           All
         </Button>
         <Button
-          className={cx('status', orderStatus === 1 && 'active-status')}
+          className={cx('status', orderStatus === 'PENDING' && 'active-status')}
           onClick={() => setOrderStatus('PENDING')}
         >
           Pending
         </Button>
         <Button
-          className={cx('status', orderStatus === 2 && 'active-status')}
+          className={cx('status', orderStatus === 'COMPLETED' && 'active-status')}
           onClick={() => setOrderStatus('COMPLETED')}
         >
           Completed
         </Button>
         <Button
-          className={cx('status', orderStatus === 3 && 'active-status')}
-          onClick={() => setOrderStatus('CANCELED')}
+          className={cx('status', orderStatus === 'CANCELLED' && 'active-status')}
+          onClick={() => setOrderStatus('CANCELLED')}
         >
-          Canceled
+          Cancelled
         </Button>
       </div>
       <div className={cx('orders')}>

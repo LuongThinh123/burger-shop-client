@@ -48,7 +48,6 @@ function ProductCard({ data, toastDispatch, className }) {
     <div className={cx('product-card', className)}>
       <Link to={`/detail/${data.id}`}>
         <div className={cx('product-img')}>
-          {/* <img /> */}
           <Image src={`${process.env.REACT_APP_API_URL}/api/file/download?fileName=${data.imageName}`} alt="" />
         </div>
       </Link>

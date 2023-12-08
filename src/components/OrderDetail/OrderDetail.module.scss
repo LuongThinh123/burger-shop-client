@@ -58,7 +58,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 
 .product-imgBox {
@@ -76,12 +76,15 @@
 .product_img {
   width: 100%;
   height: 100%;
+  min-width: 50px;
+  min-height: 50px;
   object-fit: cover;
 }
 
 .product-name {
   font-size: 1.8rem;
   font-weight: bold;
+  max-width: 500px;
 }
 
 .product-quantity {
@@ -137,6 +140,9 @@
 .status-change-btn {
   color: var(--white);
   border-radius: 6px;
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px !important;
 }
 
 .order-footer-date,
