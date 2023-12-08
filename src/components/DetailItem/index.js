@@ -85,15 +85,15 @@ function DetailItem({ data, toastDispatch }) {
             <div className={cx('item__meta')}>
               <span className={cx('sku__wrapper')}>
                 Product-id:
-                <span className={cx('sku__value')}> 1</span>
+                <span className={cx('sku__value')}>{data.id}</span>
               </span>
               <span className={cx('item__meta-Category')}>
                 Category:
-                <span className={cx('meta-Category_value')}> Pizza</span>
+                <span className={cx('meta-Category_value')}>{data.category.name}</span>
               </span>
               <span className={cx('item__meta-tags')}>
                 Tags:
-                <span className={cx('meta-tags_value')}> Pizza</span>
+                <span className={cx('meta-tags_value')}>{data.category.name}</span>
               </span>
             </div>
 
