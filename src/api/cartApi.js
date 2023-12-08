@@ -6,6 +6,7 @@ export const addToCart = async (accessToken, product, navigate) => {
     if (result.status === 401) navigate('/login');
     return result;
   } catch (err) {
+    if (err.response.data.status === 401) navigate('/login');
     console.log(err);
   }
 };
