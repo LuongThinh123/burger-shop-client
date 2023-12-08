@@ -32,17 +32,22 @@ export const setCartProducts = (cartProducts) => {
 
 export const removeCartProductsItem = (productId) => {
   const cart = getCartProducts();
-  let temp = cart.filter((item) => item.id !== productId);
+  let temp = cart.filter((item) => item.id !== Number(productId));
   localStorage.setItem('cartProducts', JSON.stringify(temp));
 };
 
 export const updateCartProductsItem = (productId, quantity) => {
   const cart = getCartProducts();
   for (let item of cart) {
-    if (item.product.id === productId) {
+    console.log('item', item.product.id);
+    console.log('productId', productId);
+    if (item.product.id === Number(productId)) {
+      console.log('vô hàm');
+
       item.amount = quantity;
     }
   }
+  console.log('cart', cart);
   localStorage.setItem('cartProducts', JSON.stringify(cart));
 };
 
@@ -51,6 +56,9 @@ export const getTotalCartProducts = () => {
   let sum = 0;
 
   for (let item of cart) {
+    console.log(item.product.priceSale);
+    console.log(item.amount);
+
     sum += Number(item.product.priceSale) * Number(item.amount);
   }
 

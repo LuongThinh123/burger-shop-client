@@ -33,7 +33,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
     reValidateMode: 'onBlur',
     defaultValues: {
       username: userInfor.username,
-      fullname: userInfor.fullname,
+      fullname: userInfor.fullName,
       email: userInfor.email,
       phone: userInfor.phone,
     },
@@ -47,8 +47,10 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
       phone: data.phone,
     };
     setUser({ ...userInfor, ...userInformation });
+    // setUserInfor({ ...userInfor, ...userInformation });
+
     const response = await userApi.updateUserInfor(userInformation, userInfor.accessToken);
-    alert(userInfor.accessToken);
+
     if (response.error) {
       toastDispatch(
         addNotification({
@@ -64,7 +66,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
         addNotification({
           id: uuidv4(),
           type: 'SUCCESS',
-          title: response.message,
+          title: 'Đã cập nhật thông tin thành công',
           message: 'Successfully change information',
         }),
       );
@@ -90,6 +92,7 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
                   type={'text'}
                   className={cx('item-input-field')}
                   inputClass={cx('item-input')}
+                  readonly
                   // value={userInfor.username}
                 />
               </div>

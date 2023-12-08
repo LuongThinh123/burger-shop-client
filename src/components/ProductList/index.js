@@ -95,7 +95,7 @@ function ProductList({ filterState, filterDispatch }) {
         className="pagination-bar"
         currentPage={filterState.page}
         totalCount={productListInfor.totalRecord ? productListInfor.totalRecord : ''}
-        pageSize={productListInfor.pageSize ? productListInfor.pageSize : 6}
+        pageSize={9}
         onPageChange={useCallback((currentPage) => handleOnPageChange(currentPage), [handleOnPageChange])}
       />
     </div>

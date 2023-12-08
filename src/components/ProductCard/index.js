@@ -18,6 +18,7 @@ function ProductCard({ data, toastDispatch, className }) {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
   console.log('re-render product');
+
   let handleAddToCart = (product) => {
     if (!accessToken) {
       navigate('/login');

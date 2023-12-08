@@ -17,10 +17,10 @@ function SearchItem({ data, onClick }) {
       />
       <div className={cx('info')}>
         <h4 className={cx('name')}>
-          <span>{data.title}</span>
+          <span>{data.name}</span>
           {/* <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} /> */}
         </h4>
-        <span className={cx('price')}>${data.sale}</span>
+        <span className={cx('price')}>${data.priceSale}</span>
       </div>
     </Link>
   );
