@@ -131,7 +131,7 @@ function Home() {
           </div>
         </div>
 
-        <HomeProduct />
+        {/* <HomeProduct /> */}
 
         <div className={cx('menu-cointainer')}>
           <div className={cx('menu-board')}>

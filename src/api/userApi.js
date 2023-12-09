@@ -7,6 +7,6 @@ export const updateUserInfor = async (userInfor, accessToken) => {
     });
     return result;
   } catch (err) {
-    console.log(err);
+    return { error: err.response.data.messages.join(',') };
   }
 };

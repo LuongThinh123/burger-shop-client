@@ -78,7 +78,7 @@ function ProductList({ filterState, filterDispatch }) {
       <SortBar
         sortFilter={filterState.order}
         pageFilter={filterState.page}
-        limit={productListInfor.pageSize ? productListInfor.pageSize : 6}
+        limit={9}
         totalCount={productListInfor.totalRecord ? productListInfor.totalRecord : ''}
         filterDispatch={filterDispatch}
       />
