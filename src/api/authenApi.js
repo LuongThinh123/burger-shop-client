@@ -14,8 +14,7 @@ export const login = async (user, dispatch, navigate) => {
   try {
     const res = await request.post(`/auth/login`, user);
     if (res.error) {
-      alert('Password or Username is incorrect');
-      return;
+      return { error: 'Login failed' };
     }
     dispatch(loginSuccess(res.user));
     localStorage.clear();
@@ -24,7 +23,7 @@ export const login = async (user, dispatch, navigate) => {
     navigate('/');
   } catch (err) {
     dispatch(loginFailed());
-    alert('Password or Username is incorrect');
+    return { error: 'Login failed' };
   }
 };
 
