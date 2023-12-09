@@ -20,7 +20,7 @@ export const getProducts = async (filterState) => {
       pageSize: 9,
       name: filterState?.searchTitle === '' ? null : filterState?.searchTitle,
       priceSaleFrom: filterState?.price?.[0],
-      priceSaleAt: filterState?.price?.[1],
+      priceSaleTo: filterState?.price?.[1],
       sort: filterState?.sort === '' ? null : filterState?.sort,
       order: filterState?.order === '' ? null : filterState?.order,
       categoryId: filterState?.categoryIdList?.length > 0 ? filterState.categoryIdList : null,
