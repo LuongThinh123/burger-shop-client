@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import Button from '~/components/Button';
-import { useAuthenContext } from '~/customHook';
+import { useAuthenContext, useToastContext } from '~/customHook';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -13,6 +13,9 @@ import * as authenApi from '~/api/authenApi';
 import Input from '~/components/Input';
 import styles from './Login.module.scss';
 import config from '~/config';
+import { addNotification } from '~/reducers/actions/toastAction';
+import { v4 as uuidv4 } from 'uuid';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 
@@ -36,14 +39,28 @@ function Login() {
   });
 
   const [, authenDispatch] = useAuthenContext();
+  const [, toastDispatch] = useToastContext();
+
   const navigate = useNavigate();
 
-  const handleLogin = (data) => {
+  const handleLogin = async (data) => {
     const newUser = {
       username: data.username.trim(' '),
       password: data.password,
     };
-    authenApi.login(newUser, authenDispatch, navigate);
+
+    const result = await authenApi.login(newUser, authenDispatch, navigate);
+
+    if (result.error) {
+      toastDispatch(
+        addNotification({
+          id: uuidv4(),
+          type: 'ERROR',
+          title: result.error,
+          message: 'Please try again',
+        }),
+      );
+    }
   };
 
   return (
@@ -108,6 +125,7 @@ function Login() {
           <span className={cx('question')}>Forgot password?</span>
         </Link>
       </div>
+      <Toast position={'top-right'} timeAutoDelete={2800} />
     </AuthenFormWrapper>
   );
 }
